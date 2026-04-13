@@ -138,22 +138,24 @@ function GroveApp() {
             </div>
           </div>
           
-          <div className="flex items-center gap-4 ml-8">
-            <UploadModal />
+          <div className="flex items-center gap-2 md:gap-4 ml-4 md:ml-8">
+            <div className="hidden sm:block">
+              <UploadModal />
+            </div>
             <Button 
               variant="outline" 
-              className="border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white"
+              className="border-zinc-800 bg-zinc-900 text-zinc-400 hover:text-white hidden md:flex"
               onClick={() => setShowVisualizer(true)}
               disabled={!currentSong}
             >
               Visualizer
             </Button>
-            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-white">
+            <Button variant="ghost" size="icon" className="text-zinc-400 hover:text-white hidden sm:flex">
               <Bell size={20} />
             </Button>
-            <div className="flex items-center gap-3 bg-zinc-900 pl-1 pr-3 py-1 rounded-full border border-zinc-800">
-              <img src={user.photoURL || ''} alt="" className="w-8 h-8 rounded-full border border-zinc-700" />
-              <span className="text-sm font-medium hidden md:block">{profile.displayName}</span>
+            <div className="flex items-center gap-2 md:gap-3 bg-zinc-900 pl-1 pr-2 md:pr-3 py-1 rounded-full border border-zinc-800">
+              <img src={user.photoURL || ''} alt="" className="w-7 h-7 md:w-8 md:h-8 rounded-full border border-zinc-700" />
+              <span className="text-xs md:text-sm font-medium hidden lg:block">{profile.displayName}</span>
               <Button variant="ghost" size="icon" className="h-6 w-6 text-zinc-500 hover:text-red-400" onClick={logout}>
                 <LogOut size={14} />
               </Button>
@@ -162,7 +164,7 @@ function GroveApp() {
         </header>
 
         {/* Content Area */}
-        <div className="flex-1 overflow-y-auto p-8 pb-32 custom-scrollbar">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8 pb-32 custom-scrollbar">
           <AnimatePresence mode="wait">
             {activeTab === 'home' && (
               <motion.div 
@@ -171,11 +173,11 @@ function GroveApp() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -20 }}
               >
-                <div className="mb-12">
-                  <h2 className="text-3xl font-bold mb-6 tracking-tight">Discover New Music</h2>
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="mb-8 md:mb-12">
+                  <h2 className="text-2xl md:text-3xl font-bold mb-4 md:mb-6 tracking-tight">Discover New Music</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
                     {/* Featured Card */}
-                    <div className="col-span-1 md:col-span-2 relative h-64 rounded-2xl overflow-hidden group cursor-pointer">
+                    <div className="col-span-1 md:col-span-2 relative h-48 md:h-64 rounded-2xl overflow-hidden group cursor-pointer">
                       <img 
                         src="https://picsum.photos/seed/music/1200/600" 
                         alt="Featured" 
@@ -183,28 +185,28 @@ function GroveApp() {
                         referrerPolicy="no-referrer"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                      <div className="absolute bottom-6 left-6">
-                        <span className="bg-indigo-600 text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-2 inline-block">Featured</span>
-                        <h3 className="text-4xl font-bold mb-2">Midnight Echoes</h3>
-                        <p className="text-zinc-300">The latest album from Grove Records</p>
+                      <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6">
+                        <span className="bg-indigo-600 text-[8px] md:text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded mb-1 md:mb-2 inline-block">Featured</span>
+                        <h3 className="text-2xl md:text-4xl font-bold mb-1 md:mb-2">Midnight Echoes</h3>
+                        <p className="text-zinc-300 text-sm md:text-base">The latest album from Grove Records</p>
                       </div>
                     </div>
                     
-                    <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 rounded-2xl p-6 border border-white/5 flex flex-col justify-between">
+                    <div className="bg-gradient-to-br from-indigo-900/40 to-purple-900/40 rounded-2xl p-4 md:p-6 border border-white/5 flex flex-col justify-between">
                       <div>
-                        <Disc className="text-indigo-400 mb-4" size={32} />
-                        <h3 className="text-xl font-bold mb-2">Artist Spotlight</h3>
-                        <p className="text-zinc-400 text-sm">Check out the rising stars of the month based on your listening habits.</p>
+                        <Disc className="text-indigo-400 mb-3 md:mb-4" size={24} md:size={32} />
+                        <h3 className="text-lg md:text-xl font-bold mb-1 md:mb-2">Artist Spotlight</h3>
+                        <p className="text-zinc-400 text-xs md:text-sm">Check out the rising stars of the month based on your listening habits.</p>
                       </div>
-                      <Button className="w-full bg-white text-black hover:bg-zinc-200 mt-4 rounded-full font-bold">Explore Now</Button>
+                      <Button className="w-full bg-white text-black hover:bg-zinc-200 mt-4 rounded-full font-bold text-sm">Explore Now</Button>
                     </div>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
                   <div>
-                    <h3 className="text-xl font-bold mb-6 flex items-center gap-2">
-                      <Play size={20} className="text-indigo-500" fill="currentColor" />
+                    <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6 flex items-center gap-2">
+                      <Play size={18} md:size={20} className="text-indigo-500" fill="currentColor" />
                       Recently Added
                     </h3>
                     <div className="space-y-1">
@@ -218,22 +220,22 @@ function GroveApp() {
                         </div>
                       ))}
                       {filteredSongs.length === 0 && (
-                        <div className="text-center py-12 bg-zinc-900/30 rounded-xl border border-dashed border-zinc-800">
-                          <Music2 className="mx-auto text-zinc-700 mb-4" size={48} />
-                          <p className="text-zinc-500">No songs found. Start by uploading some music!</p>
+                        <div className="text-center py-8 md:py-12 bg-zinc-900/30 rounded-xl border border-dashed border-zinc-800">
+                          <Music2 className="mx-auto text-zinc-700 mb-3 md:mb-4" size={40} md:size={48} />
+                          <p className="text-zinc-500 text-sm">No songs found. Start by uploading some music!</p>
                         </div>
                       )}
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-bold mb-6">Trending Genres</h3>
-                    <div className="grid grid-cols-2 gap-4">
+                    <h3 className="text-lg md:text-xl font-bold mb-4 md:mb-6">Trending Genres</h3>
+                    <div className="grid grid-cols-2 gap-3 md:gap-4">
                       {['Lo-Fi', 'Electronic', 'Jazz', 'Indie'].map((genre, i) => (
-                        <div key={genre} className={`h-24 rounded-xl p-4 flex items-end cursor-pointer hover:scale-[1.02] transition-transform ${
+                        <div key={genre} className={`h-20 md:h-24 rounded-xl p-3 md:p-4 flex items-end cursor-pointer hover:scale-[1.02] transition-transform ${
                           i === 0 ? 'bg-orange-600' : i === 1 ? 'bg-indigo-600' : i === 2 ? 'bg-emerald-600' : 'bg-rose-600'
                         }`}>
-                          <span className="font-bold text-lg">{genre}</span>
+                          <span className="font-bold text-base md:text-lg">{genre}</span>
                         </div>
                       ))}
                     </div>
@@ -245,6 +247,11 @@ function GroveApp() {
         </div>
 
         <MusicPlayer currentSong={currentSong} onNext={() => {}} onPrevious={() => {}} />
+
+        {/* Mobile Floating Upload Button */}
+        <div className="fixed bottom-24 right-4 sm:hidden z-40">
+          <UploadModal compact />
+        </div>
       </main>
 
       <AnimatePresence>

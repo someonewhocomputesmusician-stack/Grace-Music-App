@@ -9,7 +9,11 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useAuth } from './AuthProvider';
 import { toast } from 'sonner';
 
-export function UploadModal() {
+interface UploadModalProps {
+  compact?: boolean;
+}
+
+export function UploadModal({ compact }: UploadModalProps) {
   const { profile } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -52,14 +56,20 @@ export function UploadModal() {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2">
-          <Upload size={18} />
-          Upload Music
-        </Button>
+        {compact ? (
+          <Button size="icon" className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full w-12 h-12 shadow-lg shadow-indigo-500/40">
+            <Upload size={24} />
+          </Button>
+        ) : (
+          <Button className="bg-indigo-600 hover:bg-indigo-700 text-white gap-2">
+            <Upload size={18} />
+            Upload Music
+          </Button>
+        )}
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-zinc-900 text-white border-zinc-800">
+      <DialogContent className="w-[95vw] sm:max-w-[425px] bg-zinc-900 text-white border-zinc-800 p-4 sm:p-6">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold flex items-center gap-2">
+          <DialogTitle className="text-xl sm:text-2xl font-bold flex items-center gap-2">
             <Music className="text-indigo-500" />
             Upload New Track
           </DialogTitle>
@@ -76,7 +86,7 @@ export function UploadModal() {
               placeholder="Enter song title"
             />
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="album">Album (Optional)</Label>
               <Input 

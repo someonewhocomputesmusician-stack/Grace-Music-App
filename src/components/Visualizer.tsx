@@ -112,21 +112,21 @@ export function Visualizer({ song, onClose }: VisualizerProps) {
         <X size={32} />
       </Button>
 
-      <div className="z-10 text-center pointer-events-none">
+      <div className="z-10 text-center pointer-events-none px-6">
         <motion.img 
           initial={{ scale: 0.8, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 0.3 }}
           src={song.coverArtUrl} 
           alt={song.title} 
-          className="w-64 h-64 rounded-2xl shadow-2xl mb-8 mx-auto object-cover border-4 border-white/10"
+          className="w-48 h-48 md:w-64 md:h-64 rounded-2xl shadow-2xl mb-6 md:mb-8 mx-auto object-cover border-4 border-white/10"
           referrerPolicy="no-referrer"
         />
         <motion.h2 
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.5 }}
-          className="text-5xl font-bold text-white mb-2 tracking-tight"
+          className="text-3xl md:text-5xl font-bold text-white mb-2 tracking-tight"
         >
           {song.title}
         </motion.h2>
@@ -134,7 +134,7 @@ export function Visualizer({ song, onClose }: VisualizerProps) {
           initial={{ y: 20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.6 }}
-          className="text-2xl text-zinc-400"
+          className="text-xl md:text-2xl text-zinc-400"
         >
           {song.artistName}
         </motion.p>

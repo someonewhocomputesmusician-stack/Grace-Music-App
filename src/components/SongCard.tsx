@@ -1,6 +1,7 @@
 import React from 'react';
 import { MoreVertical, Play, Radio, Share2, Flag, Trash2, Plus } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -75,12 +76,19 @@ export function SongCard({ song, onPlay, isCurrent }: SongCardProps) {
         <p className="text-zinc-500 text-sm truncate">{song.artistName}</p>
       </div>
 
-      <div className="flex items-center gap-4">
-        <span className="text-zinc-500 text-sm hidden md:inline">3:45</span>
+      <div className="flex items-center gap-2 md:gap-4">
+        <span className="text-zinc-500 text-xs md:text-sm hidden sm:inline">3:45</span>
         
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" size="icon" className="text-zinc-500 hover:text-white opacity-0 group-hover:opacity-100 transition-opacity">
+            <Button 
+              variant="ghost" 
+              size="icon" 
+              className={cn(
+                "text-zinc-500 hover:text-white transition-opacity",
+                "opacity-100 lg:opacity-0 lg:group-hover:opacity-100"
+              )}
+            >
               <MoreVertical size={18} />
             </Button>
           </DropdownMenuTrigger>
