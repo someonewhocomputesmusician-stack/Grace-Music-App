@@ -1,0 +1,86 @@
+{
+  "entities": {
+    "User": {
+      "title": "User",
+      "description": "User profile information and role",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string", "description": "Firebase Auth UID" },
+        "email": { "type": "string", "format": "email" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string", "format": "uri" },
+        "role": { "type": "string", "enum": ["artist", "fan", "label"] },
+        "bio": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["uid", "email", "role"]
+    },
+    "Song": {
+      "title": "Song",
+      "description": "Music track metadata",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "artistId": { "type": "string" },
+        "artistName": { "type": "string" },
+        "album": { "type": "string" },
+        "genre": { "type": "string" },
+        "duration": { "type": "number" },
+        "audioUrl": { "type": "string", "format": "uri" },
+        "coverArtUrl": { "type": "string", "format": "uri" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "reportCount": { "type": "number" },
+        "isRemoved": { "type": "boolean" },
+        "labelId": { "type": "string" }
+      },
+      "required": ["title", "artistId", "audioUrl"]
+    },
+    "Playlist": {
+      "title": "Playlist",
+      "description": "User created playlists",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "ownerId": { "type": "string" },
+        "songIds": { "type": "array", "items": { "type": "string" } },
+        "isPublic": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["title", "ownerId"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Song reports for moderation",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "songId": { "type": "string" },
+        "reporterId": { "type": "string" },
+        "reason": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": ["songId", "reporterId", "reason"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "User",
+      "description": "User profiles"
+    },
+    "/songs/{songId}": {
+      "schema": "Song",
+      "description": "Song metadata"
+    },
+    "/playlists/{playlistId}": {
+      "schema": "Playlist",
+      "description": "User playlists"
+    },
+    "/reports/{reportId}": {
+      "schema": "Report",
+      "description": "Song reports"
+    }
+  }
+}
